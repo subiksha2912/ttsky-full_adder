@@ -29,21 +29,20 @@ async def test_full_adder(dut):
 
     # Set the input values you want to test
     for a, b, c, e_sum, e_carry in test_cases:
-    dut.ui_in.value = (c << 2) | (b << 1) | a 
-    await Timer(20, unit="ns")
+        dut.ui_in.value = (c << 2) | (b << 1) | a 
+        await Timer(20, unit="ns")
 
     
-   try:
-       output_val = int(dut.uo_out.value)
-       actual_sum = output_val & 1
-       actual_carry = (output_val >> 1) & 1
+       try:
+           output_val = int(dut.uo_out.value)
+           actual_sum = output_val & 1
+           actual_carry = (output_val >> 1) & 1
 
 
-  assert actual_sum == e_sum, f"Sum Error: A={a} B={b} C={c}"
-  assert actual_carry == e_carry, f"Carry Error: A={a} B={b} C={c}"
+          assert actual_sum == e_sum, f"Sum Error: A={a} B={b} C={c}"
+          assert actual_carry == e_carry, f"Carry Error: A={a} B={b} C={c}"
+          dut._log.info(f"Input: {a},{b},{c} -> Sum: {actual_sum}, Carry: {actual_carry} [PASS]")
 
-dut._log.info(f"Input: {a},{b},{c} -> Sum: {actual_sum}, Carry: {actual_carry} [PASS]")
-
-except ValueError:
-dut._log.error(f"Logic error: uo_out is {str(dut.uo_out.value)}")
-raise
+      except ValueError:
+        dut._log.error(f"Logic error: uo_out is {str(dut.uo_out.value)}")
+        raise
