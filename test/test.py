@@ -10,8 +10,6 @@ async def test_full_adder(dut):
     dut._log.info("Starting Gate-level Hardware Simulation...")
 
 
-    # Reset
-  
     dut.ena.value = 1
     dut.ui_in.value = 0
     dut.uio_in.value = 0
