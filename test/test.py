@@ -3,7 +3,7 @@
 
 import cocotb
 from cocotb.clock import Clock
-from cocotb.triggers import ClockCycles
+from cocotb.triggers import ClockCycles, Timer
 
 
 @cocotb.test()
@@ -33,7 +33,7 @@ async def test_project(dut):
     # Set the input values you want to test
     for a, b, c, e_sum, e_carry in test_cases:
     dut.ui_in.value = (c << 2) | (b << 1) | a 
-    await Timer(20, units="ns")
+    await Timer(20, unit="ns")
 
     
    try:
