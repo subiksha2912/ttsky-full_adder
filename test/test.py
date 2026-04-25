@@ -24,7 +24,7 @@ async def test_full_adder(dut):
         (1, 1, 0, 0, 1),
         (1, 1, 1, 1, 1),
         (1, 0, 0, 1, 0),
-        (0, 1, 0, 1, 0)
+        (0, 1, 0, 1, 0),
     ]
 
     # Set the input values you want to test
